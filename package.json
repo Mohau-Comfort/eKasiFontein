@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint . --ext .js"
+    
   },
   "dependencies": {
     "@react-native-community/eslint-config": "^3.2.0",
