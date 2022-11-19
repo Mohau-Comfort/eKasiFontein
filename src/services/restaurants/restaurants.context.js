@@ -7,6 +7,8 @@ export const RestaurantsContext = createContext();
 export const RestaurantsContextProvider = ({ children }) => {
 
     return (
-        <RestaurantsContextProvider>{children}</RestaurantsContextProvider>
+        <RestaurantsContextProvider value={{ restaurants: [1, 2, 3], }}>
+            {children}
+        </RestaurantsContextProvider>
     )
 }
