@@ -1,14 +1,17 @@
-import React, { useState, createContext, useEffect, useMemo, Children } from "react";
+import React, { useState, createContext, useEffect, useMemo } from "react";
 
-import { restaurantsRequest, restaurantTransform } from "./restaurants.services";
+import { restaurantRequest, restaurantTransform } from "./restaurants.service";
 
 export const RestaurantsContext = createContext();
 
 export const RestaurantsContextProvider = ({ children }) => {
-
-    return (
-        <RestaurantsContextProvider value={{ restaurants: [1, 2, 3], }}>
-            {children}
-        </RestaurantsContextProvider>
-    )
-}
+  return (
+    <RestaurantsContext.Provider
+      value={{
+        restaurants: [1, 2, 3, 4, 5, 6, 7, 8],
+      }}
+    >
+      {children}
+    </RestaurantsContext.Provider>
+  );
+};
