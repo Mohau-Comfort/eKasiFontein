@@ -66,7 +66,7 @@ export default function App() {
             <Tab.Navigator
               screenOptions={createScreenOptions}
               tabBarOptions={{
-                activeTintColor: "tomato",
+                activeTintColor: "dodgerblue",
                 inactiveTintColor: "gray",
               }}
             >
