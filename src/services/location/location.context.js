@@ -24,7 +24,7 @@ export const LocationContextProvider = ({ children }) => {
 
     useEffect(() => { onSearch(keyword) }, []);
 
-    return <LocationContext.LocationContextProvider value={{
+    return <LocationContext.Provider value={{
         isLoading,
         error,
         location,
@@ -32,5 +32,5 @@ export const LocationContextProvider = ({ children }) => {
         keyword,
     }}>
         {children}
-    </LocationContext.LocationContextProvider>
+    </LocationContext.Provider>
 };
