@@ -5,6 +5,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { StyleSheet } from "react-native";
 
 import {
   RestaurantCard,
@@ -47,10 +48,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
             )}
-            <Spacer position="left" size="large">
+            <Spacer style={styles.setPostion} size="large">
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
-            <Spacer position="left" size="large">
+            <Spacer style={styles.setPostion} size="large">
               <Icon source={{ uri: icon }} />
             </Spacer>
           </SectionEnd>
@@ -60,3 +61,11 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     </RestaurantCard>
   );
 };
+
+const styles = StyleSheet.create({
+
+  setPostion: {
+    marginLeft: 8,
+  }
+
+});
