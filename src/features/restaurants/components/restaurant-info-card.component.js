@@ -65,7 +65,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 const styles = StyleSheet.create({
 
   setPostion: {
-    marginLeft: 8,
+    marginLeft: 2,
   }
 
 });

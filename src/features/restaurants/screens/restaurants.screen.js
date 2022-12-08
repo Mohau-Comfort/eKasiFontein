@@ -60,7 +60,7 @@ export const RestaurantsScreen = () => {
 const styles = StyleSheet.create({
 
   setPostion: {
-    marginBottom: 8,
+    marginBottom: 2,
   }
 
 });
