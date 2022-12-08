@@ -9,10 +9,7 @@ import { RestaurantInfoCard } from "../components/restaurant-info-card.component
 import { Spacer } from "../../../components/spacer/spacer.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
-
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { Search } from "../components/search.component";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -39,9 +36,7 @@ export const RestaurantsScreen = () => {
           <Loading size={50} animating={true} color="dodgerblue" />
         </LoadingContainer>
       )}
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
+      <Search />
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
@@ -60,7 +55,7 @@ export const RestaurantsScreen = () => {
 const styles = StyleSheet.create({
 
   setPostion: {
-    marginBottom: 2,
+    marginBottom: 6,
   }
 
 });
