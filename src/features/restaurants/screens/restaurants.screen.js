@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Searchbar } from "react-native-paper";
 import { FlatList, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { ActivityIndicator } from "react-native-paper";
