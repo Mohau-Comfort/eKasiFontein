@@ -17,13 +17,13 @@ const RestaurantList = styled(FlatList).attrs({
 })``;
 
 const Loading = styled(ActivityIndicator)`
-margin-left: -25px;
+  margin-left: -25px;
 `;
 
 const LoadingContainer = styled.View`
-position: absolute;
-top: 50%;
-left:50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;
 
 export const RestaurantsScreen = () => {
@@ -52,9 +52,7 @@ export const RestaurantsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-
   setPostion: {
     marginBottom: 6,
-  }
-
+  },
 });
