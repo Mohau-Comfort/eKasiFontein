@@ -33,7 +33,7 @@ export const RestaurantDetailScreen = ({ route }) => {
                     expanded={socialsExpanded}
                     onPress={() => setsocialsExpanded(!socialsExpanded)}
                 >
-                    <List.Item title="Facebook" />
+                    <List.Item title="Facebook" left={(props) => <List.Icon {...props} icon="contacts" />} />
                     <List.Item title="Instagram" />
                     <List.Item title="LinkedIn" />
                     <List.Item title="Twitter" />
