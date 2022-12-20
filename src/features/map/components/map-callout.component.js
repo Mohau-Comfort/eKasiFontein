@@ -3,5 +3,5 @@ import { CompactRestaurantInfo } from "../../../components/restaurant/compact-re
 
 export const MapCallout = ({ restaurant }) => (
 
-    <CompactRestaurantInfo restaurant={restaurant} />
+    <CompactRestaurantInfo isMapped restaurant={restaurant} />
 );
