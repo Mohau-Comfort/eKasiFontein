@@ -1,6 +1,7 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
+import { initializeApp } from 'firebase/app';
 
 import { useFonts as useOswald, Oswald_400Regular, } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
@@ -10,6 +11,18 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/restauran
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrastructure/navigation";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBoZowJJ_sgH0bYodXjaKlQO2R1_YKoExc",
+  authDomain: "ekasi-fontein.firebaseapp.com",
+  projectId: "ekasi-fontein",
+  storageBucket: "ekasi-fontein.appspot.com",
+  messagingSenderId: "108431025855",
+  appId: "1:108431025855:web:29e7fe6d4f9b7874dc080a"
+};
+
+const app = initializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
