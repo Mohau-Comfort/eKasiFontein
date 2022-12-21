@@ -15,7 +15,7 @@ export const FavouritesContextProvider = ({ children }) => {
         }
     };
 
-    const loadFavourites = async () => {
+    const retrieveFavourites = async () => {
         try {
             const value = await AsyncStorage.getItem("@favourites");
             if (value !== null) {
@@ -39,7 +39,7 @@ export const FavouritesContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        loadFavourites();
+        retrieveFavourites();
     }, []);
 
     useEffect(() => {
