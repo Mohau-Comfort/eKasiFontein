@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 
 export const AccountNavigator = () => (
 
-    <Stack.Navigator headerShown="false">
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
 
         {/* App Landing Page (Home Page) */}
         <Stack.Screen name="Main" component={AccountScreen} />
