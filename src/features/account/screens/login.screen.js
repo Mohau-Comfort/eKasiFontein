@@ -21,7 +21,7 @@ export const LoginScreen = ({ navigation }) => {
     return (
         <AccountBackground>
             <AccountCover />
-            <Title>Meals To Go</Title>
+            <Title>EkasiFontein</Title>
             <AccountContainer>
                 <AuthInput
                     label="E-mail"
@@ -49,14 +49,14 @@ export const LoginScreen = ({ navigation }) => {
                 <Spacer size="large">
                     {!isLoading ? (
                         <AuthButton
-                            icon="lock-open-outline"
+                            icon="login"
                             mode="contained"
                             onPress={() => onLogin(email, password)}
                         >
                             Login
                         </AuthButton>
                     ) : (
-                        <ActivityIndicator animating={true} color={Colors.blue300} />
+                        <ActivityIndicator animating={true} color="blue" />
                     )}
                 </Spacer>
             </AccountContainer>
