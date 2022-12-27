@@ -1,7 +1,7 @@
 import React, { useState, createContext, useRef } from "react";
 import { initializeApp } from 'firebase/app';
 import { loginRequest } from "./authentication.service";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -24,14 +24,14 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const auth = useRef(getAuth(app)).current;
 
-    // onAuthStateChanged(auth, (usr) => {
-    //     if (usr) {
-    //         setUser(usr);
-    //         setIsLoading(false);
-    //     } else {
-    //         setIsLoading(false);
-    //     }
-    // });
+    onAuthStateChanged(auth, (usr) => {
+        if (usr) {
+            setUser(usr);
+            setIsLoading(false);
+        } else {
+            setIsLoading(false);
+        }
+    });
 
     const onLogin = (email, password) => {
         setIsLoading(true);
