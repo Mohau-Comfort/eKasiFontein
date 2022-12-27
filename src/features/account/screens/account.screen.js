@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Spacer } from "../../../components/spacer/spacer.component";
-import { AccountBackground, AccountCover, AccountContainer, AuthButton, Title } from "../components/account.styles";
+import LottieView from 'lottie-react-native';
+import { AccountBackground, AccountCover, AccountContainer, AuthButton, Title, AnimationWrapper, } from "../components/account.styles";
 
 export const AccountScreen = ({ navigation }) => {
+
+    const animation = useRef(null);
 
     return (
         <AccountBackground >
             <AccountCover />
+            <AnimationWrapper>
+                <LottieView
+                    autoPlay
+                    ref={animation}
+                    loop
+                    source={require("../../../../assets/fries.json")}
+                />
+            </AnimationWrapper>
             <Title>EkasiFontein</Title>
             <AccountContainer>
                 <AuthButton icon="login" mode="contained" onPress={() => navigation.navigate("Login")}>
