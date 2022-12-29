@@ -1,16 +1,6 @@
 import React, { useState, useContext } from "react";
-
-import { ActivityIndicator, Colors } from "react-native-paper";
-
-import {
-    AccountBackground,
-    AccountCover,
-    AccountContainer,
-    AuthButton,
-    AuthInput,
-    ErrorContainer,
-    Title,
-} from "../components/account.styles";
+import { ActivityIndicator, TextInput } from "react-native-paper";
+import { AccountBackground, AccountCover, AccountContainer, AuthButton, AuthInput, ErrorContainer, Title, } from "../components/account.styles";
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -20,10 +10,13 @@ export const RegisterScreen = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
     const { onRegister, isLoading, error } = useContext(AuthenticationContext);
+    const [passwordVisible, setPasswordVisible] = useState(true);
+    const [repeatedpasswordVisible, setrepeatedPasswordVisible] = useState(true);
+
     return (
         <AccountBackground>
             <AccountCover />
-            <Title>Meals To Go</Title>
+            <Title>EkasiFontein</Title>
             <AccountContainer>
                 <AuthInput
                     label="E-mail"
@@ -38,7 +31,8 @@ export const RegisterScreen = ({ navigation }) => {
                         label="Password"
                         value={password}
                         textContentType="password"
-                        secureTextEntry
+                        secureTextEntry={passwordVisible}
+                        right={<TextInput.Icon icon={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
                         autoCapitalize="none"
                         onChangeText={(p) => setPassword(p)}
                     />
@@ -48,7 +42,8 @@ export const RegisterScreen = ({ navigation }) => {
                         label="Repeat Password"
                         value={repeatedPassword}
                         textContentType="password"
-                        secureTextEntry
+                        secureTextEntry={repeatedpasswordVisible}
+                        right={<TextInput.Icon icon={repeatedpasswordVisible ? "eye" : "eye-off"} onPress={() => setrepeatedPasswordVisible(!repeatedpasswordVisible)} />}
                         autoCapitalize="none"
                         onChangeText={(p) => setRepeatedPassword(p)}
                     />

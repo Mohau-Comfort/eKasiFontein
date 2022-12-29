@@ -1,23 +1,18 @@
 import React, { useState, useContext } from "react";
-import { ActivityIndicator, Colors } from "react-native-paper";
-
-import {
-    AccountBackground,
-    AccountCover,
-    AccountContainer,
-    AuthButton,
-    AuthInput,
-    ErrorContainer,
-    Title,
-} from "../components/account.styles";
+import { ActivityIndicator, TextInput } from "react-native-paper";
+import { AccountBackground, AccountCover, AccountContainer, AuthButton, AuthInput, ErrorContainer, Title, } from "../components/account.styles";
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+import { Entypo } from '@expo/vector-icons';
 
 export const LoginScreen = ({ navigation }) => {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+    const [passwordVisible, setPasswordVisible] = useState(true);
+
     return (
         <AccountBackground>
             <AccountCover />
@@ -36,10 +31,11 @@ export const LoginScreen = ({ navigation }) => {
                         label="Password"
                         value={password}
                         textContentType="password"
-                        secureTextEntry
-                        autoCapitalize="none"
+                        secureTextEntry={passwordVisible}
+                        right={<TextInput.Icon icon={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
                         onChangeText={(p) => setPassword(p)}
                     />
+
                 </Spacer>
                 {error && (
                     <ErrorContainer size="large">
