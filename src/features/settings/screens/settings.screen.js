@@ -33,9 +33,13 @@ export const SettingsScreen = ({ navigation }) => {
             </AvatarContainer>
             <List.Section>
                 <SettingsItem title="Favourites" description="View your favourites" left={(props) =>
-                    <List.Icon {...props} color="black" icon="heart" />} onPress={() => navigation.navigate("Favourites")} />
+                    <List.Icon {...props} color="red" icon="heart" />} onPress={() => navigation.navigate("Favourites")} />
+                <SettingsItem title="Update Profile" left={(props) =>
+                    <List.Icon {...props} color="blue" icon="account-circle" />} onPress={() => navigation.navigate("Update Profile")} />
+                <SettingsItem title="Delete Profile" left={(props) =>
+                    <List.Icon {...props} color="red" icon="delete-off" />} onPress={() => { }} />
                 <SettingsItem title="Logout" left={(props) =>
-                    <List.Icon {...props} color="black" icon="logout" />} onPress={onLogout} />
+                    <List.Icon {...props} color="blue" icon="logout" />} onPress={onLogout} />
             </List.Section>
         </SafeArea>
     );
