@@ -2,7 +2,7 @@ import React, { useState, createContext, useRef } from "react";
 import { Alert } from "react-native";
 import { initializeApp } from 'firebase/app';
 import { loginRequest } from "./authentication.service";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateEmail, updatePassword, reauthenticateWithCredential, } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateEmail, updatePassword, reauthenticateWithCredential, EmailAuthProvider, } from "firebase/auth";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -24,6 +24,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
     const auth = useRef(getAuth(app)).current;
+
 
     onAuthStateChanged(auth, (usr) => {
         if (usr) {
@@ -71,42 +72,29 @@ export const AuthenticationContextProvider = ({ children }) => {
         });
     };
 
-
-    // Reauthenticates the current user and returns a promise...
-    const reauthenticateUser = (currentPassword) => {
-        var currentUser = auth.currentUser;
-        return reauthenticateWithCredential(currentUser, currentPassword);
-    };
-
-
-    const changeEmail = (newEmail) => {
-        updateEmail(auth.currentUser, newEmail).then((u) => {
-            setUser(u);
-            setIsLoading(false);
-            Alert.alert("Email was changed");
-        })
-            .catch((e) => {
-                setIsLoading(false);
-                setError(e.toString());
-            });
-    };
-
-    const changePassword = (newPassword, repeatedPassword) => {
+    //Update Profile
+    const changeProfile = (newEmail, currentPassword, newPassword) => {
         setIsLoading(true);
-        if (newPassword !== repeatedPassword) {
-            setError("Error: Passwords do not match");
+        if (newPassword == currentPassword) {
+            setError("Error: New password is the same as current Password");
             return;
         }
-        updatePassword(auth.currentUser, newPassword).then((u) => {
-            setUser(u);
-            setIsLoading(false);
-            Alert.alert("Password was changed");
-        })
-            .catch((e) => {
+        //Reauthentication
+        let userCredential = EmailAuthProvider.credential(auth.currentUser.email, currentPassword);
+        reauthenticateWithCredential(auth.currentUser, userCredential).then(() => {
+            //Update Email
+            updateEmail(auth.currentUser, newEmail);
+            //Update Password
+            updatePassword(auth.currentUser, newPassword).then((u) => {
+                setUser(u);
                 setIsLoading(false);
+            }).catch((e) => {
                 setError(e.toString());
             });
-    };
+            Alert.alert("Profile Updated");
+        });
+
+    }
 
     return (
         <AuthenticationContext.Provider
@@ -118,8 +106,7 @@ export const AuthenticationContextProvider = ({ children }) => {
                 onLogin,
                 onRegister,
                 onLogout,
-                changeEmail,
-                changePassword,
+                changeProfile,
             }}
         >
             {children}
