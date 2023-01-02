@@ -2,7 +2,7 @@ import React, { useState, createContext, useRef } from "react";
 import { Alert } from "react-native";
 import { initializeApp } from 'firebase/app';
 import { loginRequest } from "./authentication.service";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateEmail, updatePassword, reauthenticateWithCredential, EmailAuthProvider, } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateEmail, updatePassword, reauthenticateWithCredential, EmailAuthProvider, deleteUser, } from "firebase/auth";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -91,10 +91,23 @@ export const AuthenticationContextProvider = ({ children }) => {
             }).catch((e) => {
                 setError(e.toString());
             });
-            Alert.alert("Profile Updated");
+
         });
 
-    }
+    };
+
+    //Delete User Proile
+    const deleteProfile = () => {
+        setIsLoading(true);
+        let currentUser = auth.currentUser;
+        deleteUser(currentUser).then((u) => {
+            setUser(u);
+            setIsLoading(false);
+        }).catch((e) => {
+            setError(e.toString());
+        });
+
+    };
 
     return (
         <AuthenticationContext.Provider

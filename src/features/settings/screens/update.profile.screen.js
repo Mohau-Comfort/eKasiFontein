@@ -15,21 +15,22 @@ export const UpdateProfileScreen = ({ navigation }) => {
     const [passwordVisible, setPasswordVisible] = useState(true);
     const [repeatedpasswordVisible, setrepeatedPasswordVisible] = useState(true);
 
-    //Alert to notify User that Profile is updated
-
-    const profileUpdateRedirect = () => {
-        //function to make two option alert
+    //Confirm Update
+    const profileUpdateRedirect = () =>
         Alert.alert(
-            //title
-            "Profile Updated",
-
+            "Update Account",
+            "Are you sure you want to Update Account? ",
             [
-                { text: "Ok", onPress: () => navigation.navigate({ AccountScreen }) },
+                {
+                    text: "No",
+                    onPress: () => console.log("No Pressed"),
+                    style: "cancel"
+                },
+                { text: "Yes", onPress: navigation.navigate({ AccountScreen }) }
             ],
             { cancelable: false }
             //clicking out side of alert will not cancel
         );
-    };
 
     return (
         <BackgroundCover>
@@ -67,7 +68,7 @@ export const UpdateProfileScreen = ({ navigation }) => {
                     <Spacer size="large">
                         {!isLoading ? (
                             <AuthButton icon="lock" mode="contained" onPress={() => changeProfile(email, currentPassword, newPassword)}>
-                                Update Password
+                                Update Profile
                             </AuthButton>
                         ) : (profileUpdateRedirect)}
                     </Spacer>
