@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { List, IconButton } from "react-native-paper";
-import { ScrollView, Linking } from "react-native";
+import { List } from "react-native-paper";
+import { ScrollView } from "react-native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
 import { SafeArea } from "../../../components/utility/safe-area.component";
