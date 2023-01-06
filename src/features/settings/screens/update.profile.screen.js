@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Alert } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
@@ -32,59 +32,62 @@ export const UpdateProfileScreen = ({ navigation }) => {
     };
 
     return (
-        <BackgroundCover>
-            <SettingsCover />
-            <SettingsContainer>
-                <AuthInput
-                    label="E-mail"
-                    value={email}
-                    textContentType="emailAddress"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    onChangeText={(u) => setEmail(u)}
-                />
-                <Spacer size="large">
+        <ScrollView>
+            <BackgroundCover>
+                <SettingsCover />
+                <SettingsContainer>
+
                     <AuthInput
-                        label="Enter current Password"
-                        value={currentPassword}
-                        textContentType="password"
-                        secureTextEntry={passwordVisible}
-                        right={<TextInput.Icon icon={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
+                        label="E-mail"
+                        value={email}
+                        textContentType="emailAddress"
+                        keyboardType="email-address"
                         autoCapitalize="none"
-                        onChangeText={(p) => setPassword(p)}
-                    />
-                </Spacer>
-                <Spacer size="large">
-                    <AuthInput
-                        label="Enter New Password"
-                        value={newPassword}
-                        textContentType="password"
-                        secureTextEntry={repeatedpasswordVisible}
-                        right={<TextInput.Icon icon={repeatedpasswordVisible ? "eye" : "eye-off"} onPress={() => setrepeatedPasswordVisible(!repeatedpasswordVisible)} />}
-                        autoCapitalize="none"
-                        onChangeText={(p) => setRepeatedPassword(p)}
+                        onChangeText={(u) => setEmail(u)}
                     />
                     <Spacer size="large">
-                        {!isLoading ? (
-                            <AuthButton icon="lock" mode="contained" onPress={() => changeProfile(email, currentPassword, newPassword)}>
-                                Update Profile
-                            </AuthButton>
-                        ) : (profileUpdateRedirect)}
+                        <AuthInput
+                            label="Enter current Password"
+                            value={currentPassword}
+                            textContentType="password"
+                            secureTextEntry={passwordVisible}
+                            right={<TextInput.Icon icon={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
+                            autoCapitalize="none"
+                            onChangeText={(p) => setPassword(p)}
+                        />
                     </Spacer>
+                    <Spacer size="large">
+                        <AuthInput
+                            label="Enter New Password"
+                            value={newPassword}
+                            textContentType="password"
+                            secureTextEntry={repeatedpasswordVisible}
+                            right={<TextInput.Icon icon={repeatedpasswordVisible ? "eye" : "eye-off"} onPress={() => setrepeatedPasswordVisible(!repeatedpasswordVisible)} />}
+                            autoCapitalize="none"
+                            onChangeText={(p) => setRepeatedPassword(p)}
+                        />
+                        <Spacer size="large">
+                            {!isLoading ? (
+                                <AuthButton icon="lock" mode="contained" onPress={() => changeProfile(email, currentPassword, newPassword)}>
+                                    Update Profile
+                                </AuthButton>
+                            ) : (profileUpdateRedirect)}
+                        </Spacer>
 
+                    </Spacer>
+                    {error && (
+                        <ErrorContainer size="large">
+                            <Text variant="error">{error}</Text>
+                        </ErrorContainer>
+                    )}
+
+                </SettingsContainer>
+                <Spacer size="large">
+                    <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+                        Back
+                    </AuthButton>
                 </Spacer>
-                {error && (
-                    <ErrorContainer size="large">
-                        <Text variant="error">{error}</Text>
-                    </ErrorContainer>
-                )}
-            </SettingsContainer>
-            <Spacer size="large">
-                <AuthButton mode="contained" onPress={() => navigation.goBack()}>
-                    Back
-                </AuthButton>
-            </Spacer>
-        </BackgroundCover>
-
+            </BackgroundCover>
+        </ScrollView>
     );
 };
